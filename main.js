@@ -19,6 +19,7 @@ const fragmentShader = `
   uniform float uHoverState;
   uniform float uImageAspect;
   uniform float uZoom;
+  uniform float uRadius;
   
   varying vec2 vUv;
 
@@ -61,8 +62,8 @@ const fragmentShader = `
     
     float dist = distance(stAspect, mouseAspect);
     
-    // Reduced radius for a tighter, focused texture reveal
-    float radius = 0.8; 
+    // Responsive radius for tighter focus on desktop, larger on mobile
+    float radius = uRadius; 
     float influence = (1.0 - smoothstep(0.0, radius, dist)) * uHoverState;
     // Smoother falloff for a broad, gentle fade
     float powerInfluence = pow(influence, 1.4); 
@@ -124,7 +125,8 @@ const uniforms = {
   tDiffuse: { value: leopardTexture },
   uHoverState: { value: 0.0 },
   uImageAspect: { value: 1.0 },
-  uZoom: { value: 1.8 } // Adjusted for a nice organic pattern scale
+  uZoom: { value: 1.8 }, // Adjusted for a nice organic pattern scale
+  uRadius: { value: window.innerWidth < 768 ? 1.8 : 0.8 } // Larger on mobile
 };
 
 // Material
@@ -152,6 +154,7 @@ let currentHoverState = 0.0;
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+  uniforms.uRadius.value = window.innerWidth < 768 ? 1.8 : 0.8;
 });
 
 // --- ANIMATION LOOP ---
