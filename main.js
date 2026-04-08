@@ -126,7 +126,7 @@ const uniforms = {
   uHoverState: { value: 0.0 },
   uImageAspect: { value: 1.0 },
   uZoom: { value: 1.8 }, // Adjusted for a nice organic pattern scale
-  uRadius: { value: window.innerWidth < 768 ? 1.8 : 0.8 } // Larger on mobile
+  uRadius: { value: window.innerWidth < 768 ? 1.4 : 0.7 } // Larger on mobile
 };
 
 // Material
@@ -154,7 +154,7 @@ let currentHoverState = 0.0;
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
-  uniforms.uRadius.value = window.innerWidth < 768 ? 1.8 : 0.8;
+  uniforms.uRadius.value = window.innerWidth < 768 ? 1.4 : 0.7;
 });
 
 // --- ANIMATION LOOP ---
