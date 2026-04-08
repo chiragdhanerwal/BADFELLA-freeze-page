@@ -1,0 +1,43 @@
+# BADFELLA Website Instructions
+
+## How to Run Locally
+
+If you want to run this website on your local machine, follow these steps:
+
+1. **Prerequisites**: Make sure you have Node.js installed on your computer. You can download it from https://nodejs.org/.
+2. **Open Terminal**: Open your terminal (or command prompt) and navigate to the `website` folder.
+3. **Install Dependencies**: Run the following command to install all required packages:
+   `npm install`
+4. **Start Development Server**: Run the following command to start the Vite development server:
+   `npm run dev`
+5. **View Website**: Open your web browser and go to `http://localhost:5173/` (or the URL provided in your terminal).
+
+## How to Build and Deploy (Upload to a host site)
+
+This project uses Vite, so it needs to be "built" before it can be deployed to a standard web host.
+
+### Method 1: Easy Deployment Platforms (Vercel, Netlify, etc.) - RECOMMENDED
+The easiest way to deploy Vite applications is using platforms like Vercel or Netlify, as they automate the build process.
+
+1. Create a GitHub account and push this project's code to a new GitHub repository.
+2. Sign up on [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
+3. Connect your GitHub account and import your repository.
+4. **Settings Configuration**:
+   - The platform should automatically detect that it's a Vite project, but ensure these settings are correct:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Click **Deploy**. The platform will build and host your site automatically!
+
+### Method 2: Manual Upload (to shared hosting like GoDaddy, HostGator, cPanel, etc.)
+If you have a traditional web host, you must build the code locally first.
+
+1. **Build the Site**: Open your terminal in the `website` folder and run:
+   `npm run build`
+2. **Locate the Output**: Notice a new folder named `dist` (distribution) has been created in your project directory. This folder contains your final, optimized HTML, CSS, and JS files.
+3. **Upload via FTP/File Manager**: Use an FTP client (like FileZilla) or your host's cPanel File Manager to upload everything **INSIDE** the `dist` folder to your web server (usually into the `public_html` or `www` directory).
+   *(Do NOT upload the entire `website` folder or `node_modules`.)*
+
+## Notes / Important Settings
+- This is a static site (frontend only) so it doesn't need a Node.js server to run in production, just standard static file hosting (which Vercel, Netlify, or any traditional web host can provide).
+- Ensure `index.html` is at the root of your deployment folder.
